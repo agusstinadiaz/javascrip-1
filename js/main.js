@@ -1,50 +1,66 @@
+const productos = [
+    { nombre: 'texanas', precio: 73900 },
+    { nombre: 'borcegos', precio: 65000 },
+    { nombre: 'zapatillas', precio: 60000 },
+    { nombre: 'mocasines', precio: 57500 },
+];
+let carrito = []
 
-let = alert ('Ingrese sus datos para registrarse en la consola');
-let = prompt ('Registrar usuario');
-let = prompt ('Ingrese la contraseña');
+let seleccion = prompt('Hola, desea comprar algun producto?')
 
-let = alert ('Registra tus datos para ingresar a la consola');
-let nombre = prompt ('Introduce tu Nombre')
-let apellido = prompt('Introduce tu Apellido');
-console.log ('Bienvenid@', nombre + " " + apellido); 
-confirm ('Tu usuario fue registrado correctamente!')
-
-const usuarios = [ 
-    {De: 'Agustina Diaz', Para: 'RRHH', Asunto: 'No leido'}, 
-    {De: 'Ignacio Rodriguez', Para: 'RRHH', Asunto: 'No leido'},
-     {De: 'Camila Cardozo', Para: 'RRHH', Asunto: 'Leido'}
-     ]; 
-    console.table(usuarios);
-
-console.warn('Completa el siguiente cuestionario para ser parte de la entrevista laboral!');
-alert('Para ser parte de este equipo es importante residir en Zona Norte, tener una edad minima de 18 años y tener experiencia en Atencion al Cliente.');
-
-let edadMinima = Number(prompt('¿Cuantos años tienes?'));
-
-if (edadMinima >= 18) {
-    console.log ('Cumplis el minimo requisito para una entrevista')
-}
-if (edadMinima <= 17) {
-    console.log ('No cumplis el minimo requisito para una entrevista')
+while(seleccion != 'Si' && seleccion != 'No') {
+    alert('Responder solamente con Si o No')
+    seleccion = prompt('Hola, desea comprar algun producto?')
 }
 
-
-let zonaResidencia = String(prompt('¿En que zona residis? (Ej: Zona Norte)'));
-
-if (zonaResidencia === 'Zona Norte') {
-    console.log ('Cumplis el minimo requisito para una entrevista')
-}
-if (zonaResidencia == 'Zona Sur') {
-    console.log ('No cumplis el minimo requisito para una entrevista')
+if(seleccion == 'Si') {
+    alert('A continuacion nuestra lista de productos!')
+    let losProductos = productos.map((producto) => producto.nombre + ' ' + producto.precio + '$');
+    alert(losProductos.join(' - '))
+} else if (seleccion == 'No') {
+    alert('Gracias por venir, hasta pronto!')
 }
 
-let experiencia = String(prompt('¿Contas con experiencia en Atencion al Cliente? (Ej: Si)'));
+while(seleccion != 'No'){
+    let producto = prompt('Agrega un producto a tu carrito!')
+    let precio = 0
 
-if (experiencia === 'Si') {
-    console.log ('Cumplis el minimo requisito para una entrevista')
-}
-if (experiencia == 'No') {
-    console.log ('No cumplis el minimo requisito para una entrevista')
+    if(producto == 'texanas' || producto == 'borcegos'|| producto == 'zapatillas' || producto == 'mocasines'){
+        switch(producto) {
+            case 'texanas':
+                precio = 73900;
+                break;
+            case 'borcegos':
+                precio = 65000;
+                break;
+            case 'zapatillas':
+                precio = 60000;
+                break;
+            case 'mocasines':
+                precio = 57500;
+                break;
+            default:
+                break;
+        }
+
+        let unidades = parseInt(prompt('Cuantas unidades quiere comprar?'))
+
+        carrito.push({producto, unidades, precio})
+        console.log(carrito)
+    } else {
+        alert('No tenemos ese producto :(')
+    }
+
+    seleccion = prompt('Desea seguir comprando?')
+    
+    while(seleccion === 'No') {
+        alert('Gracias por tu compra, hasta pronto!')
+        carrito.forEach((carritoFinal) => {
+            console.log(`producto: ${carritoFinal.producto}, unidades: ${carritoFinal.unidades}, total a pagar por producto: ${carritoFinal.unidades * carritoFinal.precio}`)
+        })
+        break;
+    }
 }
 
-console.log ('Felicidades, cumpliste con todos los requisitos para la entrevista!')
+const total = carrito.reduce((acc, el) => acc + el.precio * el.unidades, 0)
+console.log(`El total a pagar por su compra es: ${total}`)
