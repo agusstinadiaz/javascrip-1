@@ -1,51 +1,50 @@
-// Inicio de la pagina
-let nombre = prompt('Introduce tu Nombre');
+
+let = alert ('Ingrese sus datos para registrarse en la consola');
+let = prompt ('Registrar usuario');
+let = prompt ('Ingrese la contraseña');
+
+let = alert ('Registra tus datos para ingresar a la consola');
+let nombre = prompt ('Introduce tu Nombre')
 let apellido = prompt('Introduce tu Apellido');
 console.log ('Bienvenid@', nombre + " " + apellido); 
+confirm ('Tu usuario fue registrado correctamente!')
 
-console.log ('¿Como usar la calculadora?');
-console.log ('Ingresar digitos: 9, 8, 7, 6, 5, 4, 3, 2, 1, 0')
-console.log ('Realizar operaciones matemáticas básicas (suma, resta, multiplicación, división): 3 + 5 = 8')
-console.log ('Obtener el resultado de la operación: =')
-console.log ('Borrar la pantalla de la calculadora: C')
-console.log ('Eliminar el último símbolo ingresado: 1234 ← 123')
-console.log ('Separar la parte fraccionaria en un número decimal: 0.1 + 0.2 = 0.3')   
+const usuarios = [ 
+    {De: 'Agustina Diaz', Para: 'RRHH', Asunto: 'No leido'}, 
+    {De: 'Ignacio Rodriguez', Para: 'RRHH', Asunto: 'No leido'},
+     {De: 'Camila Cardozo', Para: 'RRHH', Asunto: 'Leido'}
+     ]; 
+    console.table(usuarios);
 
-// Calculadora
-const pantalla = document.querySelector('.pantalla');
-const botones = document.querySelectorAll('.btn');
+console.warn('Completa el siguiente cuestionario para ser parte de la entrevista laboral!');
+alert('Para ser parte de este equipo es importante residir en Zona Norte, tener una edad minima de 18 años y tener experiencia en Atencion al Cliente.');
 
-botones.forEach(boton => {
-    boton.addEventListener('click', () => {
-        const botonApretado = boton.textContent;
+let edadMinima = Number(prompt('¿Cuantos años tienes?'));
 
-        if (boton.id === 'c') {
-            pantalla.textContent = '0';
-            return;
-        }
+if (edadMinima >= 18) {
+    console.log ('Cumplis el minimo requisito para una entrevista')
+}
+if (edadMinima <= 17) {
+    console.log ('No cumplis el minimo requisito para una entrevista')
+}
 
-        if (boton.id === 'borrar') {
-            if(pantalla.textContent.length === 1 || pantalla.textContent === 'Error!') {
-                pantalla.textContent = '0';
-            } else {
-                pantalla.textContent = pantalla.textContent.slice(0, -1);
-            }
-            return;
-        }
 
-        if (boton.id === 'igual') {
-            try {
-                pantalla.textContent = eval(pantalla.textContent);
-            } catch {
-                pantalla.textContent = 'Error!';
-            }
-            return;
-        }
-        
-        if (pantalla.textContent === '0' || pantalla.textContent === 'Error!') {
-            pantalla.textContent = botonApretado;
-        } else {
-            pantalla.textContent += botonApretado;
-            }
-    })
-})
+let zonaResidencia = String(prompt('¿En que zona residis? (Ej: Zona Norte)'));
+
+if (zonaResidencia === 'Zona Norte') {
+    console.log ('Cumplis el minimo requisito para una entrevista')
+}
+if (zonaResidencia == 'Zona Sur') {
+    console.log ('No cumplis el minimo requisito para una entrevista')
+}
+
+let experiencia = String(prompt('¿Contas con experiencia en Atencion al Cliente? (Ej: Si)'));
+
+if (experiencia === 'Si') {
+    console.log ('Cumplis el minimo requisito para una entrevista')
+}
+if (experiencia == 'No') {
+    console.log ('No cumplis el minimo requisito para una entrevista')
+}
+
+console.log ('Felicidades, cumpliste con todos los requisitos para la entrevista!')
